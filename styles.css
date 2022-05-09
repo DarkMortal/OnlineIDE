@@ -1,0 +1,65 @@
+body{
+    padding: 2px;
+    margin: auto;
+    background-color: #0a1929;
+    /*font-family: Tahoma;*/
+    overflow: auto;
+}
+html{
+    min-height: 100%;
+    min-width: 100%;
+}
+h1{
+    margin: auto;
+    text-align: center;
+    /*background-color: green;*/
+    color: white;
+}
+.control-panel{
+    display: inline-flex; 
+    width: 100%;
+    color: white;
+}
+#code{
+    width: 70%; 
+    overflow: auto;
+    font-family: monospace;
+    font-size: larger;
+}
+#input{
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+}
+textarea{
+    width: 100%; 
+    height: 100%; 
+    resize: none;
+    font-size: larger;
+    font-family: monospace;
+}
+#output{
+    background-color: black; 
+    color: greenyellow; 
+    height: 30vh; 
+    overflow: auto;
+    font-family: monospace;
+    font-size: large;
+}
+.editor{
+    width: 100%; 
+    display: inline-flex;
+    height: 70vh; 
+    overflow: hidden;
+}
+
+.container{
+    position: absolute;
+    width: 100%;
+}
+
+@media only screen and (orientation:portrait) {
+    .container{
+        width: 700px;
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deyz Online IDE</title>
+    <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+    <noscript><h1><u>You need to enable Javascript to run this app</u></h1></noscript>
+    <div class="container">
+    <h1><u>Welcome to Deyz Online IDE</u></h1><br/>
+    <div class="control-panel">
+        <div style="min-width: 300px;">
+            Select Theme
+            <select id="theme" onchange="setIDETheme(this)">
+                <option>Monokai</option>
+                <option>Chaos</option>
+                <option>Ambiance</option>
+                <option>Eclipse</option>
+                <option>Chrome</option>
+                <option>Clouds</option>
+                <option>Clouds midnight</option>
+            </select>
+        </div>
+        <div style="width: 85%; text-align: right;">
+            Select Language
+            <select id="lang" onchange="setLang(this)">
+                <option>C</option>
+                <option>C++</option>
+                <option>Node JS</option>
+                <option>Python 3</option>
+                <option>Java (JDK-16)</option> 
+            </select>
+            <button onclick="Execute()">Run</i></button>
+        </div>
+    </div><br/><br/>
+    <div class="editor">
+        <div id="code"></div>
+        <div id="input">
+            <textarea id="inputs" placeholder="Enter your Inputs Here"></textarea>
+        </div>
+    </div>
+    <div id="output">Your output will be shown here</div></div>
+    <script src="./syntax/ace.js"></script>
+
+    <!-- Load predefined Themes-->
+    <script src="./syntax/theme-monokai.js"></script>
+    <script src="./syntax/theme-chaos.js"></script>
+    <script src="./syntax/theme-chrome.js"></script>
+    <script src="./syntax/theme-clouds.js"></script>
+    <script src="./syntax/theme-clouds_midnight.js"></script>
+    <script src="./syntax/theme-ambiance.js"></script>
+    <script src="./syntax/theme-eclipse.js"></script>
+
+    <script src="./index.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "onlineide",
+  "version": "1.0.0",
+  "description": "No one cares",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "IDE"
+  ],
+  "author": "Saptarshi Dey",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
