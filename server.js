@@ -21,10 +21,7 @@ app.post("/compile", (req,res)=>{
     compile(code,lang,inputs,jobID).then(data=>{
         Delete(data[1]);
         res.json(data[0]);
-    }).catch(err=>{
-        Delete(err[1]);
-        res.json(err[0]);
-    });
+    }).catch(err=>res.json(err));
 });
 
 app.get("/", (req,res)=>{

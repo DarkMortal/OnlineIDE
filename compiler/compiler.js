@@ -23,7 +23,11 @@ function compile(code,lang,inputs,jobID){
 
 function Delete(filename){
     fs.unlinkSync('./Files/'+filename[0]+filename[1]);
-    if(filename[1] == '.c' || filename[1] == '.cpp') fs.unlinkSync('./Files/'+filename[0]);
+    try{
+        if(filename[1] == '.c' || filename[1] == '.cpp') fs.unlinkSync('./Files/'+filename[0]);
+    }catch(err){
+        // do nothing
+    }    
 }
 
 module.exports.compile = compile;
