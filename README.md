@@ -8,10 +8,12 @@ Docker build
     docker build -t onlineide:infinity .
 Docker run
 
-    docker run -p 5000:8000 darkmortal69/onlineide:v1.1.0
+    docker run -p 5000:8000 onlineide:infinity
 Docker get ID of all running containers
 
     docker ps
 Stopping a Docker container
 
     docker stop container_id
+# Screenshots
+![IDE](https://github.com/DarkMortal/OnlineIDE/assets/67017303/6eafdb0f-89aa-4e5f-81ac-88cf13784905)
