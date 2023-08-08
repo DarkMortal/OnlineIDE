@@ -28,7 +28,7 @@ def runCmd(args):
     except subp.TimeoutExpired:
         print(json.dumps({
             "Type" : "Critical Error",
-            "Message" : "Starndard execution time exceeded"
+            "Message" : "Standard execution time exceeded"
         }))
 
 def execute(args,inputs):
@@ -60,33 +60,34 @@ def execute(args,inputs):
 if __name__ == "__main__":
     try:
         lang = sys.argv[1]
-        inputs = sys.argv[2:len(sys.argv)]
+        inputs = sys.argv[2:-1]
+        fileID = sys.argv[-1]
         if lang == "C":
-            runCmd(['gcc','CodeFile.c','-std=c17'])
+            runCmd(['gcc',f'{fileID}.c','-std=c17','-o',fileID])
             if len(inputs) == 0:
-                runCmd(['./a.out'])
+                runCmd([f'./{fileID}'])
             else:
-                execute(['./a.out'],inputs)
+                execute([f'./{fileID}'],inputs)
         elif lang == "CPP":
-            runCmd(['g++','CodeFile.cpp','-std=c++17'])
+            runCmd(['g++',f'{fileID}.cpp','-std=c++17','-o',fileID])
             if len(inputs) == 0:
-                runCmd(['./a.out'])
+                runCmd([f'./{fileID}'])
             else:
-                execute(['./a.out'],inputs)
+                execute([f'./{fileID}'],inputs)
         elif lang == "Python":
             if len(inputs) == 0:
-                runCmd(['python3','CodeFile.py'])
+                runCmd(['python3',f'{fileID}.py'])
             else:
-                execute(['python3','CodeFile.py'],inputs)
+                execute(['python3',f'{fileID}.py'],inputs)
         elif lang == "JS":
             if len(inputs) == 0:
-                runCmd(['node','CodeFile.js'])
+                runCmd(['node',f'{fileID}.js'])
             else:
-                execute(['node','CodeFile.js'],inputs)
+                execute(['node',f'{fileID}.js'],inputs)
         elif lang == "Java":
             if len(inputs) == 0:
-                runCmd(['java','CodeFile.java'])
+                runCmd(['java',f'{fileID}.java'])
             else:
-                execute(['java','CodeFile.java'],inputs)
+                execute(['java',f'{fileID}.java'],inputs)
     except Exception:
         pass

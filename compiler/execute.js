@@ -1,7 +1,7 @@
 const fs = require("fs")
 const { exec } = require("child_process");
 
-function Execute(lang,inputs){
+function Execute(lang,inputs,jobID){
     return new Promise(function(resolve, reject) {
         const exec_options = {
             cwd : __dirname,
@@ -12,9 +12,8 @@ function Execute(lang,inputs){
         };
 
         var command = "python3 Command.py "+lang;
-        if(inputs) for(let i=0;i<inputs.length;i++) command += (" "+(inputs[i]).toString());
-
-        //console.log(command);
+        if(inputs) for(let i=0;i<inputs.length;i++) command += (" "+inputs[i].toString());
+        command += (" "+jobID);
         
         exec(command,exec_options,(err,stdout,stderr)=>{
             if(stdout) resolve(JSON.parse(stdout));

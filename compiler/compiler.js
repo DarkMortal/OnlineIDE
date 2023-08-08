@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { Execute } = require('./execute');
 
-function compile(code,lang,inputs){
+function compile(code,lang,inputs,jobID){
     return new Promise((resolve,reject)=>{
         var ext = "";
 
@@ -12,23 +12,19 @@ function compile(code,lang,inputs){
             case "JS" : ext = ".js"; break;
             case "Java": ext = ".java"; break;
         }
-        fs.writeFileSync("./Files/CodeFile"+ext,code,err=>{
-            if(err) throw err;
+        fs.writeFileSync(`./Files/${jobID+ext}`,code,err=>{
+            if(err) reject(err);
             console.log("File created successfully");
         });
-        setTimeout(()=>{
-            Execute(lang,inputs)
-            .then(res=>resolve(res))
-            .catch(err=>reject(err));
-        },1000);
+        Execute(lang,inputs,jobID)
+        .then(res=>resolve([res,[jobID,ext]]))
+        .catch(err=>reject([err,[jobID,ext]]));
 })}
 
-function DeleteAll(){
-    fs.readdir('./Files/', (err, files) => {
-        if (err) console.log(err);
-        for (const file of files)  fs.unlinkSync('./Files/'+file);
-    });
+function Delete(filename){
+    fs.unlinkSync('./Files/'+filename[0]+filename[1]);
+    if(filename[1] == '.c' || filename[1] == '.cpp') fs.unlinkSync('./Files/'+filename[0]);
 }
 
 module.exports.compile = compile;
-module.exports.DeleteAll = DeleteAll;
+module.exports.Delete = Delete;

@@ -7,11 +7,11 @@ RUN apt update && \
     pip3 install numpy &&\
     wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.deb &&\
     apt install ./jdk-17_linux-x64_bin.deb -y &&\
-    update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-17/bin/java" 1 &&\
     apt remove wget curl -y && \
     rm ./jdk-17_linux-x64_bin.deb &&\
     apt autoremove -y &&\
     rm -rf /var/lib/apt/lists/*
+    # update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/java-17-oracle/bin/java" 1 &&\
 
 RUN mkdir -p /usr/src/Docker
 COPY . /usr/src/Docker
@@ -19,5 +19,5 @@ COPY . /usr/src/Docker
 WORKDIR /usr/src/Docker
 
 RUN npm install
-
+EXPOSE 8000
 CMD ["npm","start"]

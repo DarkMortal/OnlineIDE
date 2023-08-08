@@ -36,8 +36,9 @@ function setLang(sel){
     mode = langs[text];
 }
 
-function Execute(){
-    output.innerText = "Compiling..."
+document.getElementById('run_code').addEventListener('click',(evt)=>{
+    evt.target.disabled = true;
+    output.innerText = "Compiling...";
     if(!isCompiling){
         var language = "";
         isCompiling = true;
@@ -69,15 +70,15 @@ function Execute(){
                 if(data.Type === "Critical Error" 
                 || data.Type === "Standard Error") output.style.color = "red";
                 else output.style.color = "greenyellow";
-                output.innerText = data.Message;
-                isCompiling = false;
+                output.innerText = data.Message.replace(/ /g,'\u00a0');
+                evt.target.disabled = isCompiling = false;
             }).catch(err=>{
-                isCompiling = false;
+                evt.target.disabled = isCompiling = false;
                 console.error(err);
             });
         }).catch(err=>{
-            isCompiling = false;
+            evt.target.disabled = isCompiling = false;
             console.error(err);
         });
     }else alert("Already compiling...");
-}
+});
