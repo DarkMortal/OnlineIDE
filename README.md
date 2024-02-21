@@ -3,12 +3,15 @@
 ## [Link to docker Image](https://hub.docker.com/r/darkmortal69/onlineide)
 ## [Demo of the Project](https://youtu.be/hKp11myylyk)
 
-Docker build
+Command to get the app-image
+
+    docker pull darkmortal69/onlineide:infinity
+Command to build the docker application
 
     docker build -t onlineide:infinity .
-Docker run
+Command to run the docker application
 
-    docker run -p 5000:8000 onlineide:infinity
+    docker run -p 5000:8000 darkmortal/onlineide:infinity
 Docker get ID of all running containers
 
     docker ps
