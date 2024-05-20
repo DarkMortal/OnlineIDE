@@ -19,7 +19,7 @@ const langs = {
     "C++" : "c_cpp",
     "Python 3" : "python",
     "Node JS" : "javascript",
-    "Java (JDK-16)" : "java"
+    "Java (JDK-17)" : "java"
 }
 
 let mode = "c_cpp" , isCompiling = false;
