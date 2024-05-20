@@ -38,6 +38,17 @@ function setLang(sel){
 
 document.getElementById('run_code').addEventListener('click',(evt)=>{
     evt.target.disabled = true;
+    let annotations = editor.getSession().getAnnotations(), isError = false;
+    for(let i = 0; i < annotations.length; i++){
+        if(annotations[i].type === "error"){
+            isError = true; break;
+        }
+    }
+    if(isError){
+        output.style.color = "red";
+        output.innerText = "Invalid syntax. Please check your code";
+        evt.target.disabled = isCompiling = false; return;
+    }
     output.innerText = "Compiling...";
     if(!isCompiling){
         var language = "";
@@ -64,21 +75,27 @@ document.getElementById('run_code').addEventListener('click',(evt)=>{
                 code : editor.session.getValue(),
                 inputs : getInputs()
             })
-          };
+        };
+        
         fetch("/compile",config).then(res=>{
             res.json().then(data=>{
                 if(data.Type === "Critical Error" 
                 || data.Type === "Standard Error") output.style.color = "red";
                 else output.style.color = "greenyellow";
                 output.innerText = data.Message.replace(/ /g,'\u00a0');
+                if(data.Time) output.innerText += `\n\nTime taken: ${data.Time} ms`;
                 evt.target.disabled = isCompiling = false;
             }).catch(err=>{
                 evt.target.disabled = isCompiling = false;
                 console.error(err);
+                output.style.color = "red";
+                output.innerText = "Invalid response received from server";
             });
         }).catch(err=>{
             evt.target.disabled = isCompiling = false;
             console.error(err);
+            output.style.color = "red";
+            output.innerText = "Invalid response received from server";
         });
     }else alert("Already compiling...");
 });

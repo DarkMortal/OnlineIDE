@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+from time import perf_counter as cnt
 import subprocess as subp
 
 root = os.path.dirname(os.path.abspath(__file__))
@@ -8,17 +9,20 @@ isString = lambda s: str(type(s)) == "<class 'str'>"
 
 def runCmd(args):
     try:
+        usage_start = cnt()
         p1 = subp.run(args,capture_output=True,text=True,cwd=root+"/../Files",timeout=5)
         if p1.stderr and isString(p1.stderr):
             print(json.dumps({
                 "Type": "Standard Error",
-                "Message": p1.stderr
+                "Message": p1.stderr,
+                "Time": (cnt() - usage_start) * 1000
             }))
             raise p1.stderr
         elif p1.stdout and isString(p1.stdout):
             print(json.dumps({
                 "Type": "Standard Output",
-                "Message": p1.stdout
+                "Message": p1.stdout,
+                "Time": (cnt() - usage_start) * 1000
             }))
     except FileNotFoundError:
         print(json.dumps({
@@ -33,6 +37,7 @@ def runCmd(args):
 
 def execute(args,inputs):
     try:
+        usage_start = cnt()
         p1 = subp.Popen(args, stdout=subp.PIPE, stderr=subp.PIPE, stdin=subp.PIPE, text=True, cwd=root+"/../Files")
         for i in inputs:
             inp = str(i) + '\n'
@@ -43,13 +48,15 @@ def execute(args,inputs):
         if err and isString(err):
             print(json.dumps({
                 "Type": "Standard Error",
-                "Message": err
+                "Message": err,
+                "Time": (cnt() - usage_start) * 1000
             }))
             raise err
         elif output and isString(output):
             print(json.dumps({
                 "Type": "Standard Output",
-                "Message": output
+                "Message": output,
+                "Time": (cnt() - usage_start) * 1000
             }))
     except FileNotFoundError as err:
         print(json.dumps({

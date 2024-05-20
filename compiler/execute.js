@@ -15,7 +15,7 @@ function Execute(lang,inputs,jobID){
         if(inputs) for(let i=0;i<inputs.length;i++) command += (" "+inputs[i].toString());
         command += (" "+jobID);
         
-        exec(command,exec_options,(err,stdout,stderr)=>{
+        exec(command, exec_options, (err,stdout,stderr)=>{
             if(stdout) resolve(JSON.parse(stdout));
             if(stdout === "") reject({
                 "Type" : "Critical Error",

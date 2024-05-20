@@ -1,24 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 body{
-    padding: 2px;
-    margin: auto;
-    background-color: #0a1929;
-    /*font-family: Tahoma;*/
-    overflow: auto;
+    background-color: #4288e4;
+    font-family: 'Noto Sans';
+    overflow: hidden;
 }
-html{
-    min-height: 100%;
-    min-width: 100%;
+html, body{
+    height: 100dvh;
+    width: 100dvw;
+    margin: 0; padding: 0;
+    position: absolute;
 }
 h1{
     margin: auto;
     text-align: center;
-    /*background-color: green;*/
+    margin-bottom: 5px;
     color: white;
 }
 .control-panel{
-    display: inline-flex; 
+    display: inline-flex;
+    flex-direction: row;
     width: 100%;
     color: white;
+    margin-bottom: 7px;
+    padding-left: 10px;
 }
 #code{
     width: 70%; 
@@ -41,22 +46,27 @@ textarea{
 #output{
     background-color: black; 
     color: greenyellow; 
-    height: 30vh; 
+    height: 35dvh;
     overflow: auto;
     font-family: monospace;
     font-size: large;
     padding: 10px;
+    overflow: auto;
 }
 .editor{
-    width: 100%; 
+    width: 100%;
     display: inline-flex;
-    height: 70vh; 
+    flex-direction: row;
+    height: 70dvh;
     overflow: hidden;
 }
 
 .container{
     position: absolute;
     width: 100%;
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
 }
 
 @media only screen and (orientation:portrait) {

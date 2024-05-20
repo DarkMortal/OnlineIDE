@@ -10,9 +10,9 @@
 <body>
     <noscript><h1><u>You need to enable Javascript to run this app</u></h1></noscript>
     <div class="container">
-    <h1><u>Welcome to Deyz Online IDE</u></h1><br/>
+    <h1><u>Welcome to Deyz Online IDE</u></h1>
     <div class="control-panel">
-        <div style="min-width: 300px;">
+        <div style="width: fit-content; margin-right: 10px;">
             Select Theme
             <select id="theme" onchange="setIDETheme(this)">
                 <option>Monokai</option>
@@ -24,7 +24,7 @@
                 <option>Clouds midnight</option>
             </select>
         </div>
-        <div style="width: 85%; text-align: right;">
+        <div style="min-width: fit-content; text-align: right;">
             Select Language
             <select id="lang" onchange="setLang(this)">
                 <option>C</option>
@@ -35,14 +35,14 @@
             </select>
             <button id="run_code">Run</i></button>
         </div>
-    </div><br/><br/>
+    </div>
     <div class="editor">
         <div id="code"></div>
         <div id="input">
             <textarea id="inputs" placeholder="Enter your Inputs Here"></textarea>
         </div>
     </div>
-    <div id="output">Your output will be shown here</div></div>
+    <div id="output">Your output will be displayed here</div></div>
     <script src="./syntax/ace.js"></script>
 
     <!-- Load predefined Themes-->
