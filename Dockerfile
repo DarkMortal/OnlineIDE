@@ -4,7 +4,7 @@ RUN apt update && \
     apt install curl wget -y &&\
     curl -sL https://deb.nodesource.com/setup_14.x &&\
     apt -y install gcc g++ python3 python3-pip nodejs npm && \
-    pip3 install numpy &&\
+    pip3 install numpy --break-system-packages &&\
     wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.deb &&\
     apt install ./jdk-17_linux-x64_bin.deb -y &&\
     apt remove wget curl -y && \
